@@ -8,3 +8,9 @@ Then download this Software by running: <br/>
 $git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git <br/>
 
 and add/replace the the programs in raspberry_pi_camera_bot by the Software in RaspiRobot-Webcontrol. <br/>
+
+General setup for the Robot: <br/>
+$sudo apt-get install xrdp    # Remote Desktop <br/>
+$sudo apt-get install i2c-tools <br/>
+$sudo apt-get install python-dev <br/>
+§sudo apt-get install python-rpi.gpio <br/>
