@@ -13,4 +13,6 @@ General setup for the Robot: <br/>
 $sudo apt-get install xrdp    # Remote Desktop <br/>
 $sudo apt-get install i2c-tools <br/>
 $sudo apt-get install python-dev <br/>
-§sudo apt-get install python-rpi.gpio <br/>
+$sudo apt-get install python-rpi.gpio <br/>
+
+Setup I2C like shown [here](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c).
