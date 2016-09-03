@@ -15,7 +15,7 @@ if __name__=='__main__':
     print('...done')
     print('Install libs, tornado, sockjs...')
     print('-------------------------------------------------------------------')
-    os.system('sudo apt-get install python-pip python-dev python-serial arduino')
+    os.system('sudo apt-get install python-pip python-dev python-smbus i2c-tools python-serial arduino')
     os.system('sudo pip install tornado ino')
     os.system('git clone https://github.com/mrjoes/sockjs-tornado.git')
     os.system('sudo python /home/pi/sockjs-tornado/setup.py install')
@@ -44,6 +44,6 @@ if __name__=='__main__':
         os.system('sudo update-rc.d robot_web_server defaults')
         print('..done')
     else:
-        print('Server does not start automatically, type $sudo python /home/pi/raspberry_pi_camera_bot/robot_web_server.py')
+        print('Server does not start automatically, type $sudo python /home/pi/raspberry_pi_camera_bot/robot_web_server.py to start the server manually')
     if raw_input('Setup finished, do you want to reboot now? (y/n)') == "y":
         os.system('sudo reboot')
