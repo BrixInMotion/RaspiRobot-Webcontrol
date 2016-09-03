@@ -17,8 +17,9 @@ if __name__=='__main__':
     print('-------------------------------------------------------------------')
     os.system('sudo apt-get install python-pip python-dev python-smbus i2c-tools python-serial arduino')
     os.system('sudo pip install tornado ino')
-    os.system('git clone https://github.com/mrjoes/sockjs-tornado.git')
-    os.system('sudo python /home/pi/sockjs-tornado/setup.py install')
+    #os.system('git clone https://github.com/mrjoes/sockjs-tornado.git')
+    #os.system('sudo python /home/pi/sockjs-tornado/setup.py install')  #Doesnt work
+    os.system('sudo pip install git+https://github.com/mrjoes/sockjs-tornado.git')
     print('-------------------------------------------------------------------')
     print('...done')
     print('Install pi co-op...')
