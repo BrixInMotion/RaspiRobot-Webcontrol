@@ -44,6 +44,7 @@ lastAddr = 0x40
 
 # Initialise the PWM device using the default address
 pwm = PWM(0x40, debug=False)
+pwm.setPWMFreq(60)
 # Note if you'd like more debug output you can instead run:
 #pwm = PWM(0x40, debug=True)
 #--------------------------------------------------------------------
@@ -109,19 +110,20 @@ def readSPI(opcode, addr):
 def initialize_bus():
 	print("function")
 #--------------------------------------------------------------------
-	
-def Drive(Xpos, Ypos):
+
+def Drive(leftMotorSpeed, rightMotorSpeed):
     bus.write_byte_data(address_xmc,WaitStep, 0xa0)
     bus.write_byte_data(address_xmc,SpeedStepPlus, 0x02)
     bus.write_byte_data(address_xmc,SpeedStepMinus, 0x04)
-    if Ypos >= 0:
-        rightspeed = int(Ypos*40)
-    elif Ypos < 0:
-        rightspeed = int(Ypos*40*(-1)+127)
-    if Xpos >= 0:
-        leftspeed = int(Xpos*40)
-    elif Xpos < 0:
-        leftspeed = int(Xpos*40*(-1)+127)
+    
+    if leftMotorSpeed >= 0:
+        leftspeed = int(leftMotorSpeed*0.5)      #leftMotor Speed: 0-80, Max Geschw.:40 -> speed*0.5
+    elif leftMotorSpeed < 0:
+        leftspeed = int(leftMotorSpeed*0.5*(-1)+127)
+    if rightMotorSpeed >= 0:
+        rightspeed = int(rightMotorSpeed*0.5)
+    elif rightMotorSpeed < 0:
+        rightspeed = int(rightMotorSpeed*0.5*(-1)+127)
 
 #    if Ypos >= 0:
 #        leftspeed = int(Ypos*40)
@@ -131,7 +133,14 @@ def Drive(Xpos, Ypos):
 #    rightspeed = leftspeed
     bus.write_byte_data(address_xmc,SpeedLeftMotor, leftspeed)
     bus.write_byte_data(address_xmc,SpeedRightMotor,rightspeed)
-    
+#--------------------------------------------------------------------
+def Light(onoff):
+    if onoff == 1:
+        sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b10000000) 	#Light on
+    elif onoff == 0:
+	sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000) 	#Light off
+#--------------------------------------------------------------------
+
 ##    if Ypos > 0.8: #vorwaerts (MSD 0: 0x01..0x7F)
 ##        bus.write_byte_data(address_xmc,SpeedLeftMotor, 0x28)
 ##        bus.write_byte_data(address_xmc,SpeedRightMotor,0x28)
@@ -167,7 +176,11 @@ def Drive(Xpos, Ypos):
         # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000010)
         # time.sleep(0.5)
         # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
-		
+def CenterCamera():
+    pwm.setPWM(8, 0, servomid_h)	#Hoehe
+    pwm.setPWM(9, 0, servomid_s)        #Seite
+
+    
 def Camera_servos(Xpos, Ypos):
     servo_seite = int(servomid_s + (servoMax_s - servomid_s)*Xpos)
     servo_hoehe = int(servomid_h + (servoMax_h - servomid_h)*Ypos)

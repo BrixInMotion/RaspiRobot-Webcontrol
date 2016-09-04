@@ -147,7 +147,7 @@ class RobotController:
     def setMotorJoystickPos( self, joystickX, joystickY ):
         #print 'Motor X: ', joystickX,' Y: ', joystickY
         
-        DrivebyXMC.Drive(joystickX, joystickY)			#Sende koordinaten an DrivebyXMC
+        #DrivebyXMC.Drive(joystickX, joystickY)			#Sende koordinaten an DrivebyXMC
         joystickX, joystickY = self.normaliseJoystickData( joystickX, joystickY )
         
         if self.robotConfig.usePresetMotorSpeeds:
@@ -169,7 +169,9 @@ class RobotController:
         
         leftMotorSpeed = max( -maxAbsMotorSpeed, min( leftMotorSpeed, maxAbsMotorSpeed ) )
         rightMotorSpeed = max( -maxAbsMotorSpeed, min( rightMotorSpeed, maxAbsMotorSpeed ) )
-        #print("Motorgeschwindigkeit Rechts: ",rightMotorSpeed)
+        #print("rightMotorSpeed: ",rightMotorSpeed, ", leftMotorSpeed: ", leftMotorSpeed)
+        DrivebyXMC.Drive(leftMotorSpeed, rightMotorSpeed)			                            #Sende koordinaten an DrivebyXMC
+        
         self.leftMotorSpeed = leftMotorSpeed*self.robotConfig.leftMotorScale
         self.rightMotorSpeed = rightMotorSpeed
         
@@ -189,6 +191,7 @@ class RobotController:
         
         self.leftMotorSpeed = max( -maxAbsMotorSpeed, min( leftMotorSpeed, maxAbsMotorSpeed ) )
         self.rightMotorSpeed = max( -maxAbsMotorSpeed, min( rightMotorSpeed, maxAbsMotorSpeed ) )
+        print ("leftMotorSpeed: ", leftMotorSpeed, " rightMotorSpeed: ", rightMotorSpeed)
         
         self.lastMotionCommandTime = time.time()
     
