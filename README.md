@@ -1,46 +1,25 @@
-This is the code for a Raspberry Pi based camera robot. The robot's motors are 
-driven by an Arduino compatible Dagu Mini Driver board. Tornado is used to
-provide a web interface for the robot which allows the robot to be driven
-around whilst streaming images back from the Raspberry Pi's camera.
+# RaspiRobot-Webcontrol
+Some files and an instruction how to use and change the Dawn Robotics Camera-bot Software.
 
-Installing
-----------
+Download this Software by running: <br/>
 
-This code has the following dependencies
+$git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git raspberry_pi_camera_bot <br/>
 
-* Your Raspberry Pi must have its camera enabled
-* mjpg-streamer - a good tutorial is [here](http://blog.miguelgrinberg.com/post/how-to-build-and-run-mjpg-streamer-on-the-raspberry-pi)
-* [PySerial](http://pyserial.sourceforge.net), [Tornado](http://www.tornadoweb.org), and [Ino](http://inotool.org/)
+and run: <br/>
 
-install with
+$sudo python /home/pi/raspberry_pi_camera_bot/Setup-Camera-bot.py <br/>
 
-    sudo apt-get update
-    sudo apt-get install python-pip python-dev python-serial
-    sudo pip install tornado ino
-    
-* [sockjs-tornado](https://github.com/mrjoes/sockjs-tornado) 
+This script installs all the software you need to control your Robot via a webpage. <br/>
+Alternativ you can install the Software like shown 
+[here](http://web.archive.org/web/20151023223534/http://www.dawnrobotics.co.uk/creating-a-dawn-robotics-sd-card/), 
+but the script does exactly the same without setting up the Pi as an Access point. <br/>
+If you install the Software manually you have to add/replace the the programs in raspberry_pi_camera_bot by the Software in <br/> RaspiRobot-Webcontrol, otherwise the script does this automatically, it reboots the pi ,if you admit, and you afterards you <br/>
+can immediately enter the Pi's IP-Address in a Browser on your Tablet (or another computer). <br/>
 
-install with
+General setup for the Robot (the Setup-Camera-bot script installs this already): <br/>
+$sudo apt-get install xrdp    # Remote Desktop <br/>
+$sudo apt-get install i2c-tools <br/>
+$sudo apt-get install python-dev <br/>
+$sudo apt-get install python-rpi.gpio <br/>
 
-    git clone https://github.com/mrjoes/sockjs-tornado.git
-    cd sockjs-tornado
-    sudo python setup.py install
-
-Finally, clone this repository by running
-
-    git clone https://bitbucket.org/DawnRobotics/raspberry_pi_camera_bot.git   
- 
-Running
--------
-
-Start the server by running
-
-    cd raspberry_pi_camera_bot
-    sudo ./robot_web_server.py
-    
-Alternatively, get the server to start when the Raspberry Pi boots by running
-
-    sudo cp init.d/robot_web_server /etc/init.d/robot_web_server
-    sudo chmod a+x /etc/init.d/robot_web_server
-    sudo update-rc.d robot_web_server defaults
-
+Setup I2C like shown [here](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) if it doesn't work.
