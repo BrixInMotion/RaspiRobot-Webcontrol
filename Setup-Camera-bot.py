@@ -37,13 +37,15 @@ if __name__=='__main__':
     os.system('cp /home/pi/RaspiRobot-Webcontrol/DrivebyXMC.py /home/pi/raspberry_pi_camera_bot/')
     os.system('cp /home/pi/RaspiRobot-Webcontrol/mini_driver.py /home/pi/raspberry_pi_camera_bot/')
     os.system('cp /home/pi/RaspiRobot-Webcontrol/robot_controller.py /home/pi/raspberry_pi_camera_bot/')
+    os.system('cp /home/pi/RaspiRobot-Webcontrol/robot_web_server.py /home/pi/raspberry_pi_camera_bot/')
+    os.system('cp /home/pi/RaspiRobot-Webcontrol/index.html /home/pi/raspberry_pi_camera_bot/www/')
     print('-------------------------------------------------------------------')
     print('...done')
     if raw_input('Do you want the Server to start automatically? (y/n)') == "y":
         os.system('sudo cp /home/pi/raspberry_pi_camera_bot/init.d/robot_web_server /etc/init.d/robot_web_server')
         os.system('sudo chmod a+x /etc/init.d/robot_web_server')
         os.system('sudo update-rc.d robot_web_server defaults')
-        print('..done')
+        print('...done')
     else:
         print('Server does not start automatically, type $sudo python /home/pi/raspberry_pi_camera_bot/robot_web_server.py to start the server manually')
     if raw_input('Setup finished, do you want to reboot now? (y/n)') == "y":
