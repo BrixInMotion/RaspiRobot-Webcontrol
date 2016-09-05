@@ -31,7 +31,7 @@ if __name__=='__main__':
     print('Install robot web server and change skripts...')
     print('-------------------------------------------------------------------')
     os.system('git clone https://DawnRobotics@bitbucket.org/DawnRobotics/raspberry_pi_camera_bot.git')
-    os.system('git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git')
+    os.system('git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git raspberry_pi_camera_bot')
     os.system('cp /home/pi/RaspiRobot-Webcontrol/Adafruit_I2C.py /home/pi/raspberry_pi_camera_bot/')
     os.system('cp /home/pi/RaspiRobot-Webcontrol/Adafruit_PWM_Servo_Driver.py /home/pi/raspberry_pi_camera_bot/')
     os.system('cp /home/pi/RaspiRobot-Webcontrol/DrivebyXMC.py /home/pi/raspberry_pi_camera_bot/')
