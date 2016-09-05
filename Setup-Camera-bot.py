@@ -1,7 +1,5 @@
 import os
 import sys
-import time
-import string
 
 if __name__=='__main__':
     print('-------------------------------------------------------------------')
@@ -17,10 +15,9 @@ if __name__=='__main__':
     print('...done')
     print('Install libs, tornado, sockjs...')
     print('-------------------------------------------------------------------')
-    os.system('sudo apt-get install python-pip python-dev python-serial arduino')
+    os.system('sudo apt-get install python-pip python-dev python-smbus i2c-tools python-serial arduino')
     os.system('sudo pip install tornado ino')
-    os.system('git clone https://github.com/mrjoes/sockjs-tornado.git')
-    os.system('sudo python /home/pi/sockjs-tornado/setup.py install')
+    os.system('sudo pip install git+https://github.com/mrjoes/sockjs-tornado.git')
     print('-------------------------------------------------------------------')
     print('...done')
     print('Install pi co-op...')
@@ -31,8 +28,8 @@ if __name__=='__main__':
     print('...done')
     print('Install robot web server and change skripts...')
     print('-------------------------------------------------------------------')
-##    os.system('git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git raspberry_pi_camera_bot')
 ##    os.system('git clone https://DawnRobotics@bitbucket.org/DawnRobotics/raspberry_pi_camera_bot.git')
+##    os.system('git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git raspberry_pi_camera_bot')
 ##    os.system('cp /home/pi/RaspiRobot-Webcontrol/Adafruit_I2C.py /home/pi/raspberry_pi_camera_bot/')
 ##    os.system('cp /home/pi/RaspiRobot-Webcontrol/Adafruit_PWM_Servo_Driver.py /home/pi/raspberry_pi_camera_bot/')
 ##    os.system('cp /home/pi/RaspiRobot-Webcontrol/DrivebyXMC.py /home/pi/raspberry_pi_camera_bot/')
@@ -46,8 +43,8 @@ if __name__=='__main__':
         os.system('sudo cp /home/pi/raspberry_pi_camera_bot/init.d/robot_web_server /etc/init.d/robot_web_server')
         os.system('sudo chmod a+x /etc/init.d/robot_web_server')
         os.system('sudo update-rc.d robot_web_server defaults')
-        print('..done')
+        print('...done')
     else:
-        print('Server does not start automatically, type $sudo python /home/pi/raspberry_pi_camera_bot/robot_web_server.py')
+        print('Server does not start automatically, type $sudo python /home/pi/raspberry_pi_camera_bot/robot_web_server.py to start the server manually')
     if raw_input('Setup finished, do you want to reboot now? (y/n)') == "y":
         os.system('sudo reboot')
