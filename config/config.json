@@ -1,0 +1,23 @@
+{
+    "panPulseWidthMin": 700, 
+    "tiltPulseWidthMin": 550, 
+    "customMaxAbsTurnSpeed": 30.0, 
+    "usePresetMotorSpeeds": true, 
+    "piSensorModuleName": "sensors.default_sensor_reader", 
+    "customMaxAbsMotorSpeed": 50.0, 
+    "miniDriverSensorConfiguration": {
+        "configD12": "ultrasonic", 
+        "rightEncoderType": "quadrature", 
+        "configD13": "inactive", 
+        "configA5": "analog", 
+        "configA4": "analog", 
+        "configA1": "analog", 
+        "configA0": "analog", 
+        "configA3": "analog", 
+        "configA2": "analog", 
+        "leftEncoderType": "quadrature"
+    }, 
+    "leftMotorScale": 1.32, 
+    "panPulseWidthMax": 2100, 
+    "tiltPulseWidthMax": 2400
+}
