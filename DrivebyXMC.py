@@ -186,7 +186,7 @@ def Relais(onoff):
         # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000010)
         # time.sleep(0.5)
         # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
-def CenterCamera():
+def CentreCamera():
     pwm.setPWM(8, 0, servomid_h)	#Hoehe
     pwm.setPWM(9, 0, servomid_s)        #Seite
 

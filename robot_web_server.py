@@ -322,9 +322,6 @@ if __name__ == "__main__":
         args=[ robotConfig, robotConnectionResultQueue ] )
     robotConnectionThread.start()
 
-    #Center Camera
-    DrivebyXMC.CenterCamera()
-
     # Now start the web server
     logging.info( "Starting web server..." )
     http_server = tornado.httpserver.HTTPServer( application )

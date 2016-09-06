@@ -142,12 +142,11 @@ class RobotController:
         self.tiltAngle = self.CENTRE_ANGLE
         self.panSpeed = 0.0
         self.tiltSpeed = 0.0
+        DrivebyXMC.CentreCamera()
     
     #-----------------------------------------------------------------------------------------------
     def setMotorJoystickPos( self, joystickX, joystickY ):
-        #print 'Motor X: ', joystickX,' Y: ', joystickY
-        
-        #DrivebyXMC.Drive(joystickX, joystickY)			#Sende koordinaten an DrivebyXMC
+
         joystickX, joystickY = self.normaliseJoystickData( joystickX, joystickY )
         
         if self.robotConfig.usePresetMotorSpeeds:
