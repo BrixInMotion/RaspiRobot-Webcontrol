@@ -67,6 +67,7 @@ robotConnectionResultQueue = Queue.Queue()
 isClosing = False
 
 Camera_Light_Status = 0
+Relais_Status = 1
 
 #--------------------------------------------------------------------------------------------------- 
 def createRobot( robotConfig, resultQueue ):
@@ -115,6 +116,11 @@ class ConnectionHandler( sockjs.tornado.SockJSConnection ):
                     global Camera_Light_Status
                     Camera_Light_Status = not Camera_Light_Status       #Toggle Light status
                     DrivebyXMC.Light(Camera_Light_Status)
+
+                elif lineData[ 0 ] == "Relais":
+                    global Relais_Status
+                    Relais_Status = not Relais_Status       #Toggle Relais status
+                    DrivebyXMC.Relais(Relais_Status)
 					 
                 elif lineData[ 0 ] == "GetConfig":
                     

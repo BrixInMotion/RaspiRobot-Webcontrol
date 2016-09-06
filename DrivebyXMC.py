@@ -140,6 +140,16 @@ def Light(onoff):
     elif onoff == 0:
 	sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000) 	#Light off
 #--------------------------------------------------------------------
+def Relais(onoff):
+    if onoff == 1:
+        sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000010) #Relais on
+        time.sleep(0.5)
+        sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
+    elif onoff == 0:
+	sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000001) #Relais off
+        time.sleep(0.5)
+        sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
+#--------------------------------------------------------------------
 
 ##    if Ypos > 0.8: #vorwaerts (MSD 0: 0x01..0x7F)
 ##        bus.write_byte_data(address_xmc,SpeedLeftMotor, 0x28)
