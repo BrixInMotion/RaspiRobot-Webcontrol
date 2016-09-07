@@ -148,8 +148,8 @@
                         socket.send( "Move " + pos.x + " " + pos.y ); } }
              });
              $('#pan_tilt_stick').joystick({
-                 xSnap: true,
-                 ySnap: true,
+                 xSnap: false,
+                 ySnap: false,
                  moveEvent: function(pos) { 
                     if ( socket.readyState == SockJS.OPEN ) {
                         socket.send( "PanTilt " + pos.x + " " + pos.y ); } },
