@@ -42,6 +42,7 @@ if __name__=='__main__':
     if raw_input('Do you want the Server to start automatically? (y/n)') == "y":
         os.system('sudo cp /home/pi/raspberry_pi_camera_bot/init.d/robot_web_server /etc/init.d/robot_web_server')
         os.system('sudo chmod a+x /etc/init.d/robot_web_server')
+        os.system('sudo chmod a+x /home/pi/raspberry_pi_camera_bot/robot_web_server.py')
         os.system('sudo update-rc.d robot_web_server defaults')
         print('...done')
     else:
