@@ -33,6 +33,16 @@ servoMin_s = 320    #ch9: seite, servoMin: links
 servomid_s = 435
 servoMax_s = 550
 
+#Variables Claw Servos
+servoMax_claw = 630
+servoMid_claw = 415
+servoMin_claw = 200
+
+servoMax_clawneck = 460
+servoMid_clawneck = 330
+servoMin_clawneck = 200
+
+
 FrequenzMotor = 300 #300 Hz
 FrequenzServo = 60  #60 Hz
 servoMin = 0        # 0 for wheels, 350 for servos
@@ -110,7 +120,6 @@ def readSPI(opcode, addr):
 def initialize_bus():
 	print("function")
 #--------------------------------------------------------------------
-
 def Drive(leftMotorSpeed, rightMotorSpeed):
     bus.write_byte_data(address_xmc,WaitStep, 0xa0)
     bus.write_byte_data(address_xmc,SpeedStepPlus, 0x02)
@@ -124,15 +133,22 @@ def Drive(leftMotorSpeed, rightMotorSpeed):
         rightspeed = int(rightMotorSpeed*0.5)
     elif rightMotorSpeed < 0:
         rightspeed = int(rightMotorSpeed*0.5*(-1)+127)
-
-#    if Ypos >= 0:
-#        leftspeed = int(Ypos*40)
-#    elif Ypos < 0:
-#        leftspeed = int(Ypos*40*(-1)+127)
-
-#    rightspeed = leftspeed
     bus.write_byte_data(address_xmc,SpeedLeftMotor, leftspeed)
     bus.write_byte_data(address_xmc,SpeedRightMotor,rightspeed)
+#--------------------------------------------------------------------
+def Elevator_clawturn(Xclaw, Yelevator):
+    #print (Yelevator)
+    bus.write_byte_data(address_xmc,WaitStep, 0xa0)
+    bus.write_byte_data(address_xmc,SpeedStepPlus, 0x02)
+    bus.write_byte_data(address_xmc,SpeedStepMinus, 0x04)
+	
+    maxSpeedup = 100
+    maxSpeeddown = 90
+	
+    if Yelevator >= 0:				#up
+        bus.write_byte_data(address_xmc,SpeedElevator, int(maxSpeedup*Yelevator))
+    elif Yelevator < 0:				#down
+        bus.write_byte_data(address_xmc,SpeedElevator, int(0x80 - maxSpeeddown*Yelevator))
 #--------------------------------------------------------------------
 def Light(onoff):
     if onoff == 1:
@@ -149,8 +165,26 @@ def Relais(onoff):
 	sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000001) #Relais off
         time.sleep(0.5)
         sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
-#--------------------------------------------------------------------
+#--------------------------------------------------------------------		
+def CentreCamera():
+    pwm.setPWM(8, 0, servomid_h)	#Hoehe
+    pwm.setPWM(9, 0, servomid_s)        #Seite
 
+#--------------------------------------------------------------------		   
+def Camera_servos(Xpos, Ypos):
+    servo_seite = int(servomid_s + (servoMax_s - servomid_s)*Xpos)
+    servo_hoehe = int(servomid_h + (servoMax_h - servomid_h)*Ypos)
+
+    pwm.setPWM(8, 0, servo_hoehe)	#Hoehe
+    pwm.setPWM(9, 0, servo_seite)	#Seite
+#--------------------------------------------------------------------		
+def Claw_servos(Xpos, Ypos):
+    servo_clawNeck = int(servoMid_clawneck + (servoMax_clawneck - servoMid_clawneck)*(Ypos*(-1)) )
+    servo_claw = int(servoMid_claw + (servoMax_claw - servoMid_claw)*Xpos)
+
+    pwm.setPWM(10, 0, servo_claw)	#claw
+    pwm.setPWM(11, 0, servo_clawNeck)	#clawNeck
+#--------------------------------------------------------------------
 ##    if Ypos > 0.8: #vorwaerts (MSD 0: 0x01..0x7F)
 ##        bus.write_byte_data(address_xmc,SpeedLeftMotor, 0x28)
 ##        bus.write_byte_data(address_xmc,SpeedRightMotor,0x28)
@@ -166,34 +200,10 @@ def Relais(onoff):
 ##    elif Xpos > 0.8: #rechts drehen
 ##        bus.write_byte_data(address_xmc,SpeedLeftMotor, 0x20)
 ##        bus.write_byte_data(address_xmc,SpeedRightMotor,(0x80 + 0x20))
-		
-       
+	     
     # elif Richtung=="u": #Plattform rauf
         # bus.write_byte_data(address_xmc,SpeedElevator, 0x40)
     # elif Richtung=="m": #Plattform runter
         # bus.write_byte_data(address_xmc,SpeedElevator, (0x80 + 0x40))
     # elif Richtung=="j": #Platform halt
         # bus.write_byte_data(address_xmc,SpeedElevator, 0x00)
-    # elif Richtung=="l": #Licht an
-        # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b10000000)
-    # elif Richtung=="o": #Licht aus
-        # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
-    # elif Richtung=="h": #Relais aus
-        # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000001)
-        # time.sleep(0.5)
-        # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
-    # elif Richtung=="g": #Relais an
-        # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000010)
-        # time.sleep(0.5)
-        # sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
-def CentreCamera():
-    pwm.setPWM(8, 0, servomid_h)	#Hoehe
-    pwm.setPWM(9, 0, servomid_s)        #Seite
-
-    
-def Camera_servos(Xpos, Ypos):
-    servo_seite = int(servomid_s + (servoMax_s - servomid_s)*Xpos)
-    servo_hoehe = int(servomid_h + (servoMax_h - servomid_h)*Ypos)
-
-    pwm.setPWM(8, 0, servo_hoehe)	#Hoehe
-    pwm.setPWM(9, 0, servo_seite)	#Seite

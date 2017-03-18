@@ -168,7 +168,15 @@ class ConnectionHandler( sockjs.tornado.SockJSConnection ):
                         self.extractJoystickData( lineData[ 1 ], lineData[ 2 ] )
                     
                     if robot != None:
-                        robot.setMotorJoystickPos( motorJoystickX, motorJoystickY )     
+                        robot.setMotorJoystickPos( motorJoystickX, motorJoystickY )
+
+		elif lineData[ 0 ] == "Elevator" and len( lineData ) >= 3:
+                    
+                    elevatorJoystickX, elevatorJoystickY = \
+                        self.extractJoystickData( lineData[ 1 ], lineData[ 2 ] )
+                    
+                    if robot != None:
+                        robot.setElevatorJoystickPos( elevatorJoystickX, elevatorJoystickY ) 
                         
                 elif lineData[ 0 ] == "SetMotorSpeeds" and len( lineData ) >= 3:
                     
@@ -195,6 +203,14 @@ class ConnectionHandler( sockjs.tornado.SockJSConnection ):
                         
                     if robot != None:
                         robot.setNeckJoystickPos( neckJoystickX, neckJoystickY )
+						
+		elif lineData[ 0 ] == "claw" and len( lineData ) >= 3:				#Verify changes
+                    
+                    clawJoystickX, clawJoystickY = \
+                        self.extractJoystickData( lineData[ 1 ], lineData[ 2 ] )
+                        
+                    if robot != None:
+                        robot.setClawJoystickPos( clawJoystickX, clawJoystickY )
                         
                 elif lineData[ 0 ] == "SetNeckAngles" and len( lineData ) >= 3:
                     

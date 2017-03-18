@@ -208,6 +208,12 @@ class RobotController:
         self.lastMotionCommandTime = time.time()
     
     #-----------------------------------------------------------------------------------------------
+    def setClawJoystickPos( self, joystickX, joystickY ):
+        DrivebyXMC.Claw_servos(joystickX, joystickY)			#Sende koordinates to DrivebyXMC
+    #-----------------------------------------------------------------------------------------------
+    def setElevatorJoystickPos( self, joystickX, joystickY ):
+        DrivebyXMC.Elevator_clawturn(joystickX, joystickY)			#Sende koordinates to DrivebyXMC
+    #-----------------------------------------------------------------------------------------------
     def setNeckAngles( self, panAngle, tiltAngle ):
         
         self.panAngle = max( self.MIN_ANGLE, min( panAngle, self.MAX_ANGLE ) )

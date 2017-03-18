@@ -3,6 +3,7 @@
 import re
 import subprocess
 import time
+import DrivebyXMC
 
 ipRegex = re.compile( "inet addr\:(?P<ipAddress>[0-9\.]*)" )
 
@@ -12,6 +13,7 @@ while True:
     searchResults = ipRegex.search( ifconfigData )
 
     if searchResults == None:
+        DrivebyXMC.Relais(0)        #Switch off Power
 
         print "No ip address found"
         subprocess.call( [ "sudo", "ifdown", "wlan0" ] )
@@ -26,6 +28,7 @@ while True:
         
         subprocess.call( [ "sudo", "service", "hostapd", "start" ] )
         subprocess.call( [ "sudo", "service", "isc-dhcp-server", "start" ] )
+        DrivebyXMC.Relais(1)        #Switch on Power
         
         with open( "/tmp/keep_wifi_alive.log", "w+" ) as logFile:
             print "Revived wifi"
