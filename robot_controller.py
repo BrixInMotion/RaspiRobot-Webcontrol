@@ -168,8 +168,6 @@ class RobotController:
         
         leftMotorSpeed = max( -maxAbsMotorSpeed, min( leftMotorSpeed, maxAbsMotorSpeed ) )
         rightMotorSpeed = max( -maxAbsMotorSpeed, min( rightMotorSpeed, maxAbsMotorSpeed ) )
-        #print("rightMotorSpeed: ",rightMotorSpeed, ", leftMotorSpeed: ", leftMotorSpeed)
-        DrivebyXMC.Drive(leftMotorSpeed, rightMotorSpeed)			                            #Sende koordinaten an DrivebyXMC
         
         self.leftMotorSpeed = leftMotorSpeed*self.robotConfig.leftMotorScale
         self.rightMotorSpeed = rightMotorSpeed
@@ -290,9 +288,11 @@ class RobotController:
         self.tiltAngle = max( self.MIN_ANGLE, min( self.tiltAngle, self.MAX_ANGLE ) )
         
         # Update the mini driver
-        self.miniDriver.setOutputs(
-            self.leftMotorSpeed, self.rightMotorSpeed, self.panAngle, self.tiltAngle )
-        self.miniDriver.update()
+        #self.miniDriver.setOutputs(
+        #    self.leftMotorSpeed, self.rightMotorSpeed, self.panAngle, self.tiltAngle )
+        #self.miniDriver.update()
+        
+        DrivebyXMC.Drive(self.leftMotorSpeed, self.rightMotorSpeed)
         
         # Send servo settings if needed
         if curTime - self.lastServoSettingsSendTime >= self.TIME_BETWEEN_SERVO_SETTING_UPDATES:

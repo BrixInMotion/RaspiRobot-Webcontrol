@@ -84,8 +84,9 @@
 			var clawStick = $('#claw_stick');
             var cameraImage = $('#camera');
             var btnShutdown = $( "#btnShutdown" );
-	    var btnLight = $( "#btnLight" );		//Light button
-	    var btnRelais = $( "#btnRelais" );		//Relais button
+			var btnLight = $( "#btnLight" );
+			var btnRelais = $( "#btnRelais" );
+			var btnXMCReset = $( "#btnXMCReset" );
         
             console.log( screen.width + " " + screen.height );
         
@@ -94,8 +95,8 @@
                 // In landscape mode
                 motorStick.css( 'left', 0.1*screen.width - motorStick.width()/2 );
                 motorStick.css( 'top', 0.4*screen.height - motorStick.height()/2 );
-				elevatorStick.css( 'left', 0.1*screen.width - motorStick.width()/2 );
-                elevatorStick.css( 'top', 0.7*screen.height - motorStick.height()/2 );
+				elevatorStick.css( 'left', 0.1*screen.width - elevatorStick.width()/2 );
+                elevatorStick.css( 'top', 0.7*screen.height - elevatorStick.height()/2 );
                 panTiltStick.css( 'left', 0.9*screen.width - panTiltStick.width()/2 );
                 panTiltStick.css( 'top', 0.5*screen.height - panTiltStick.height()/2 );
 				clawStick.css( 'left', 0.9*screen.width - panTiltStick.width()/2 );
@@ -103,33 +104,39 @@
                 btnShutdown.css( 'position', 'fixed' );
                 btnShutdown.css( 'left', 0.9*screen.width - btnShutdown.width()/2 );
                 btnShutdown.css( 'top', 0.1*screen.height );
-		btnLight.css( 'position', 'fixed' );					//Light button
-		btnLight.css( 'left', 0.9*screen.width - btnLight.width()/2 );
-		btnLight.css( 'top', 0.15*screen.height );
-		btnRelais.css( 'position', 'fixed' );					//Relais button
-		btnRelais.css( 'left', 0.9*screen.width - btnRelais.width()/2 );
-		btnRelais.css( 'top', 0.2*screen.height );
+				btnLight.css( 'position', 'fixed' );				
+				btnLight.css( 'left', 0.9*screen.width - btnLight.width()/2 );
+				btnLight.css( 'top', 0.15*screen.height );
+				btnRelais.css( 'position', 'fixed' );					
+				btnRelais.css( 'left', 0.9*screen.width - btnRelais.width()/2 );
+				btnRelais.css( 'top', 0.2*screen.height );
+				btnXMCReset.css( 'position', 'fixed' );
+				btnXMCReset.css( 'left', 0.9*screen.width - btnXMCReset.width()/2 );
+				btnXMCReset.css( 'top', 0.25*screen.height );
             }
             else
             {
                 // In portrait mode
                 motorStick.css( 'left', 0.2*screen.width - motorStick.width()/2 );
-                motorStick.css( 'top', 0.7*screen.height - motorStick.height()/2 );
-				motorStick.css( 'left', 0.2*screen.width - motorStick.width()/2 );
-                motorStick.css( 'top', 0.8*screen.height - motorStick.height()/2 );
+                motorStick.css( 'top', 0.65*screen.height - motorStick.height()/2 );
+				elevatorStick.css( 'left', 0.2*screen.width - elevatorStick.width()/2 );
+                elevatorStick.css( 'top', 0.8*screen.height - elevatorStick.height()/2 );
                 panTiltStick.css( 'left', 0.8*screen.width - panTiltStick.width()/2 );
-                panTiltStick.css( 'top', 0.7*screen.height - panTiltStick.height()/2 );
+                panTiltStick.css( 'top', 0.65*screen.height - panTiltStick.height()/2 );
 				clawStick.css( 'left', 0.8*screen.width - panTiltStick.width()/2 );
                 clawStick.css( 'top', 0.8*screen.height - panTiltStick.height()/2 );
                 btnShutdown.css( 'position', 'fixed' );
                 btnShutdown.css( 'left', 0.5*screen.width - btnShutdown.width()/2 );
                 btnShutdown.css( 'top', 0.6*screen.height - btnShutdown.height()/2 );
-		btnLight.css( 'position', 'fixed' );					//Light button
-		btnLight.css( 'left', 0.5*screen.width - btnLight.width()/2 );
+				btnLight.css( 'position', 'fixed' );
+				btnLight.css( 'left', 0.5*screen.width - btnLight.width()/2 );
                 btnLight.css( 'top', 0.7*screen.height - btnLight.height()/2 );
-		btnRelais.css( 'position', 'fixed' );					//Relais button
-		btnRelais.css( 'left', 0.5*screen.width - btnRelais.width()/2 );
-		btnRelais.css( 'top', 0.8*screen.height );
+				btnRelais.css( 'position', 'fixed' );
+				btnRelais.css( 'left', 0.5*screen.width - btnRelais.width()/2 );
+				btnRelais.css( 'top', 0.8*screen.height );
+				btnXMCReset.css( 'position', 'fixed' );
+				btnXMCReset.css( 'left', 0.5*screen.width - btnXMCReset.width()/2 );
+				btnXMCReset.css( 'top', 0.9*screen.height );
             }
             
             cameraImage.css( 'max-width', screen.width );
@@ -260,23 +267,32 @@
                 
               } );
 			  
-	     $( "#btnLight" ).click( function() {				//Light button start
+	     $( "#btnLight" ).click( function() {
              
                 if ( socket.readyState == SockJS.OPEN ) 
                 {
                     socket.send( "CamLight" );
                 }
                 
-              } );								//Light button end
+              } );
 
-	     $( "#btnRelais" ).click( function() {				//Relais button start
+	     $( "#btnRelais" ).click( function() {
              
                 if ( socket.readyState == SockJS.OPEN ) 
                 {
                     socket.send( "Relais" );
                 }
                 
-              } );								//Relais button end
+              } );
+              
+         $( "#btnXMCReset" ).click( function() {
+             
+                if ( socket.readyState == SockJS.OPEN ) 
+                {
+                    socket.send( "XMCReset" );
+                }
+                
+              } );
             
             // Add a periodic function to keep the camera and socket alive
             setInterval( function() { 
@@ -330,6 +346,7 @@
     <button id="btnShutdown" type="button" class="btn">Shutdown</button>
     <button id="btnLight" type="button" class="btn">Light</button>
     <button id="btnRelais" type="button" class="btn">NOT-Aus</button>
+    <button id="btnXMCReset" type="button" class="btn">Reset XMC</button>
     
     <div id="modalShutdownDialog">
         <div class="modal-content">

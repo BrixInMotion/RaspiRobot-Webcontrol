@@ -1,0 +1,7 @@
+
+Motors: 			http://www.pollin.de/shop/dt/NTQ0OTg2OTk-/Motoren/DC_Getriebemotoren/Gleichstrom_Getriebemotor_MY2007U222.html
+Adafruit 16 CH Servo hat:	http://www.exp-tech.de/shields-module/raspberry-pi/adafruit-16-channel-pwm-servo-hat-for-raspberry-pi-mini-kit
+Raspberry Pi 3:			https://www.reichelt.de/Einplatinen-Computer/RASPBERRY-PI-3/3/index.html?ACTION=3&LA=446&ARTICLE=164977&GROUPID=6666&artnr=RASPBERRY+PI+3&SEARCH=raspberry%2Bpi%2B3
+Raspberry Pi Camera:		https://www.reichelt.de/Weiteres-Zubehoer/RPI-WWCAM/3/index.html?ACTION=3&LA=446&ARTICLE=148944&GROUPID=6671&artnr=RPI+WWCAM&SEARCH=raspberry%2Bpi%2Bcamera
+Infineon XMC 1100 Boot kit:	
+Infineon BTN8982 H-Bridges:
