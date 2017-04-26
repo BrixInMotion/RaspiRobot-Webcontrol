@@ -19,11 +19,12 @@ If you install the Software manually you have to add/replace the the programs in
 RaspiRobot-Webcontrol, otherwise the script does this automatically, it reboots the pi ,if you admit, and afterards you <br/>
 can immediately enter the Pi's IP-Address in a Browser on your Tablet (or another computer). <br/>
 <br/>
-You can also set the Pi up as a Wifi Bridge like I did, so the wlan0 (the internal Wlan if your're using the RPi 3) <br/>
-works as an Access Point and wlan1 (a Wlan-USB-Adapter) works as a client. In this configuration you have a wireless Wlan repeater, <br/>
+You can also set the Pi up as a Wifi Bridge like I did, so the wlan0 (the internal Wlan if your're using the RPi 3)
+works as an Access Point and wlan1 (a Wlan-USB-Adapter) works as a client. In this configuration you have a wireless Wlan repeater,
 but can also access the Web-server to control the Robot from both sites. To set up like explained, follow
 [this](https://learn.adafruit.com/setting-up-a-raspberry-pi-as-a-wifi-access-point/install-software) great tutorial
-and replace the *eth0* commands in the 3 commands of iptable configuration by *wlan1*.
+and replace the *eth0* commands in the 3 commands of iptable configuration by *wlan1*. Use the *etc-network_interfaces.txt*
+as an example for configuration to have normal Wifi by wlan1.
 
 General setup for the Robot (the Setup-Camera-bot script installs this already): <br/>
 $sudo apt-get install xrdp    # Remote Desktop <br/>

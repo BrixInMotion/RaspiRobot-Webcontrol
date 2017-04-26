@@ -42,6 +42,10 @@ servoMax_clawneck = 460
 servoMid_clawneck = 330
 servoMin_clawneck = 200
 
+#Values Clawturn
+servoMax_t = 630
+servoMid_t = 415
+servoMin_t = 200
 
 FrequenzMotor = 300 #300 Hz
 FrequenzServo = 60  #60 Hz
@@ -144,11 +148,15 @@ def Elevator_clawturn(Xclaw, Yelevator):
 	
     maxSpeedup = 100
     maxSpeeddown = 90
+
+    clawturn = int(servoMid_t + (servoMax_t - servoMid_t)*Xclaw)
 	
     if Yelevator >= 0:				#up
         bus.write_byte_data(address_xmc,SpeedElevator, int(maxSpeedup*Yelevator))
+        pwm.setPWM(12, 0, clawturn)
     elif Yelevator < 0:				#down
         bus.write_byte_data(address_xmc,SpeedElevator, int(0x80 - maxSpeeddown*Yelevator))
+        pwm.setPWM(12, 0, clawturn)
 #--------------------------------------------------------------------
 def Light(onoff):
     if onoff == 1:
@@ -165,6 +173,12 @@ def Relais(onoff):
 	sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000001) #Relais off
         time.sleep(0.5)
         sendSPI(SPI_SLAVE_ADDR, SPI_GPIOA, 0b00000000)
+
+def XMCReset():
+    pass
+    #High
+    #time.sleep(1)
+    #Low
 #--------------------------------------------------------------------		
 def CentreCamera():
     pwm.setPWM(8, 0, servomid_h)	#Hoehe
