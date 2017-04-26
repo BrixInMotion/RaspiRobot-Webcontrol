@@ -3,5 +3,7 @@ Motors: 			http://www.pollin.de/shop/dt/NTQ0OTg2OTk-/Motoren/DC_Getriebemotoren/
 Adafruit 16 CH Servo hat:	http://www.exp-tech.de/shields-module/raspberry-pi/adafruit-16-channel-pwm-servo-hat-for-raspberry-pi-mini-kit
 Raspberry Pi 3:			https://www.reichelt.de/Einplatinen-Computer/RASPBERRY-PI-3/3/index.html?ACTION=3&LA=446&ARTICLE=164977&GROUPID=6666&artnr=RASPBERRY+PI+3&SEARCH=raspberry%2Bpi%2B3
 Raspberry Pi Camera:		https://www.reichelt.de/Weiteres-Zubehoer/RPI-WWCAM/3/index.html?ACTION=3&LA=446&ARTICLE=148944&GROUPID=6671&artnr=RPI+WWCAM&SEARCH=raspberry%2Bpi%2Bcamera
-Infineon XMC 1100 Boot kit:	
-Infineon BTN8982 H-Bridges:
+Infineon XMC 1100 Boot kit:	http://www.infineon.com/cms/en/product/evaluation-boards/KIT_XMC11_BOOT_001/evaluation-boards/KIT_XMC11_BOOT_001/productType.html?productType=db3a30443b360d0e013b8f5163c46f62
+Infineon BTN8982 H-Bridges:	http://www.infineon.com/cms/en/product/productType.html?productType=5546d4624ad04ef9014b07c0c07922e0
+
+Reichelt-Cart:			https://www.reichelt.de/my/1338089
