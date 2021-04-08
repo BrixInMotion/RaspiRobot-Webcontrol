@@ -13,17 +13,17 @@ See the Robot in action: https://www.youtube.com/watch?v=14D5h0CcbAE
 * [Infineon XMC1100 Boot kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/)
 * 3 * [Infineon BTN8982 DC Motor-Control Shield](https://www.infineon.com/cms/en/product/evaluation-boards/dc-motorcontr_btn8982/)
 
-## 2. Software installation:
-Download this Software by running:
+## 2. Software installation
+Download this software by running:
 
 ```
 $git clone https://github.com/BrixInMotion/RaspiRobot-Webcontrol.git raspberry_pi_camera_bot
 ```
 and run: <br/>
 ```
-$sudo python /home/pi/raspberry_pi_camera_bot/Setup-Camera-bot.py <br/>
+$sudo python /home/pi/raspberry_pi_camera_bot/Setup-Camera-bot.py
 ```
-This script installs all the software you need to control your Robot via a webpage. Alternativ you can install the Software [like shown here](http://web.archive.org/web/20151023223534/http://www.dawnrobotics.co.uk/creating-a-dawn-robotics-sd-card/), 
+This script installs all the software you need to control your Robot via a webpage. Alternatively you can install the Software [like shown here](http://web.archive.org/web/20151023223534/http://www.dawnrobotics.co.uk/creating-a-dawn-robotics-sd-card/), 
 but the script does exactly the same without setting up the Pi as an Access point. If you install the Software manually you have to add/replace the the programs in raspberry_pi_camera_bot by the Software in RaspiRobot-Webcontrol, otherwise the script does this automatically. It reboots the Pi, if you admit, and afterards you 
 can immediately enter the Pi's IP-Address in a Browser on your Tablet (or another computer).
 
